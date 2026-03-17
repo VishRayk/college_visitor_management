@@ -92,8 +92,3 @@ Python service runs on `http://localhost:5000`.
 - **Frontend env**: `frontend/.env` (see `frontend/.env.example`)
   - `VITE_API_BASE_URL` (default `http://localhost:3000`)
   - `VITE_PY_BASE_URL` (default `http://localhost:5000`)
-
-## Notes / repo hygiene
-
-- **Never commit `.env`**: secrets belong only in your local `.env`. Commit `.env.example` instead.
-- **DB schema is versioned** in `db/init.sql` so you can recreate the project on any machine.
