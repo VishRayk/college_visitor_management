@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
+import { API_BASE_URL } from "../config/api";
 export default function VisitorList() {
   const [visitors, setVisitors] = useState([]);
   const [filter, setFilter] = useState("current");
@@ -14,9 +15,9 @@ export default function VisitorList() {
     try {
       let url;
       if (filter === "scheduled") {
-        url = "http://localhost:3000/visitor/scheduled";
+        url = `${API_BASE_URL}/visitor/scheduled`;
       } else {
-        url = `http://localhost:3000/visitor/${filter}`;
+        url = `${API_BASE_URL}/visitor/${filter}`;
       }
 
       const response = await fetch(url);
@@ -46,7 +47,7 @@ export default function VisitorList() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/visitor/checkout/${visitorId}`, {
+      const response = await fetch(`${API_BASE_URL}/visitor/checkout/${visitorId}`, {
         method: "POST",
       });
 
@@ -71,7 +72,7 @@ export default function VisitorList() {
   
     try {
       const response = await axios.post(
-        "http://localhost:3000/appointments/accept-appointment",
+        `${API_BASE_URL}/appointments/accept-appointment`,
         { appointment_id: appointmentId },
         {
           headers: {
@@ -173,7 +174,7 @@ export default function VisitorList() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
                           {visitor.photo_url ? (
                             <a
-                              href={`http://localhost:3000${visitor.photo_url}`}
+                              href={`${API_BASE_URL}${visitor.photo_url}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="hover:underline text-blue-600"

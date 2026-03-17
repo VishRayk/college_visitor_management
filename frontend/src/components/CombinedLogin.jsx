@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from "../config/api";
 
 function CombinedLogin() {
   const [role, setRole] = useState(null);
@@ -28,7 +29,7 @@ function CombinedLogin() {
     setError('');
     
     try {
-      const response = await axios.post(`http://localhost:3000/auth/${role}/login`, formData);
+      const response = await axios.post(`${API_BASE_URL}/auth/${role}/login`, formData);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('theme', 'green-orange');
       navigate('/schedule-appointment');

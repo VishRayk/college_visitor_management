@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL, PY_BASE_URL } from "../config/api";
 
 export default function ImageFetch({ visitorId }) {
   const [isCapturing, setIsCapturing] = useState(false);
@@ -66,7 +67,7 @@ export default function ImageFetch({ visitorId }) {
   const uploadImage = async () => {
     if (ai) {
       try {
-        const response = await axios.post("http://localhost:3000/visitor/ai-image-post", {
+        const response = await axios.post(`${API_BASE_URL}/visitor/ai-image-post`, {
           visitorId: visitorId
         });
   
@@ -92,7 +93,7 @@ export default function ImageFetch({ visitorId }) {
     }
   
     try {
-      const response = await fetch('http://localhost:3000/visitor/post_image', {
+      const response = await fetch(`${API_BASE_URL}/visitor/post_image`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,12 +119,12 @@ export default function ImageFetch({ visitorId }) {
   const aiImage = async () => {
     try {
       setai(true)
-      const response = await axios.post("http://localhost:5000/detect-faces", {
+      const response = await axios.post(`${PY_BASE_URL}/detect-faces`, {
         visitorId: visitorId,
       });
   
       if (response.data.status === "success") {
-        const fullImageURL = `http://localhost:5000/${response.data.image_path}`;
+        const fullImageURL = `${PY_BASE_URL}/${response.data.image_path}`;
         setDetectedImagePath(fullImageURL);
         alert("Visitor image captured using AI!");
         

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ImageFetch from './Imagefetch.jsx';
+import { API_BASE_URL } from "../config/api";
 
 export default function VisitorForm() {
   const [data, setData] = useState({
@@ -27,7 +28,7 @@ export default function VisitorForm() {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/visitor/entry', {
+      const response = await fetch(`${API_BASE_URL}/visitor/entry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from "../config/api";
 
 function ScheduledAppointments() {
   const [appointments, setAppointments] = useState([]);
@@ -16,7 +17,7 @@ function ScheduledAppointments() {
     // Fetch scheduled appointments for the logged-in user
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/appointments/me', {
+        const response = await axios.get(`${API_BASE_URL}/appointments/me`, {
           headers: { token: token },  // Pass token directly in the header
         });
         setAppointments(response.data); // Assume response contains appointment data

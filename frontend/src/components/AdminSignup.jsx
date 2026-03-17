@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/api";
 
 const AdminSignup = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const AdminSignup = () => {
     setMessage("");
 
     try {
-      const res = await axios.post("http://localhost:3000/auth/adminstaff/signup", formData);
+      const res = await axios.post(`${API_BASE_URL}/auth/adminstaff/signup`, formData);
       setMessage(res.data.message);
       setTimeout(() => navigate("/admin-login"), 2000);
     } catch (err) {

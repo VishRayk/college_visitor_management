@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/api";
 
 export default function StudentSignup() {
   const [formData, setFormData] = useState({
@@ -34,7 +35,7 @@ export default function StudentSignup() {
     try {
       const { confirmPassword, ...dataToSend } = formData;
       const response = await axios.post(
-        "http://localhost:3000/auth/student/signup",
+        `${API_BASE_URL}/auth/student/signup`,
         dataToSend
       );
       setMessage(response.data.message);

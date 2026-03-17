@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import StudentSignup from "./StudentSignup";
+import { API_BASE_URL } from "../config/api";
 
 export default function StudentLogin() {
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ export default function StudentLogin() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/student/login",
+        `${API_BASE_URL}/auth/student/login`,
         formData
       );
       setMessage(response.data.message);

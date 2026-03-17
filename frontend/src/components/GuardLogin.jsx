@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/api";
 
 const DEV_MODE = false; // Set to false before deploying
 
@@ -22,7 +23,7 @@ function GuardLogin() {
 
     setIsLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/guard/entry-otp-send", {
+      const res = await axios.post(`${API_BASE_URL}/guard/entry-otp-send`, {
         gid,
         phone,
       });
@@ -45,7 +46,7 @@ function GuardLogin() {
 
     setIsLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/guard/entry-otp-verify", {
+      const res = await axios.post(`${API_BASE_URL}/guard/entry-otp-verify`, {
         gid,
         phone,
         otp,

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from "../config/api";
 
 function ScheduleAppointment() {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ function ScheduleAppointment() {
 
       console.log(token);
       const response = await axios.post(
-        'http://localhost:3000/appointments/make-appointment',
+        `${API_BASE_URL}/appointments/make-appointment`,
         formData,
         {
           headers: {

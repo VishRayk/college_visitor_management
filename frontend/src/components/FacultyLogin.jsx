@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FacultySignup from "./FacultySignup"; // Assuming this is the FacultySignup component
+import { API_BASE_URL } from "../config/api";
 
 const FacultyLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -24,7 +25,7 @@ const FacultyLogin = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:3000/auth/faculty/login", credentials);
+      const res = await axios.post(`${API_BASE_URL}/auth/faculty/login`, credentials);
       setMessage(res.data.message);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem('theme', 'green-orange');

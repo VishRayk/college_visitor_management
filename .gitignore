@@ -1,6 +1,9 @@
 .env
+frontend/.env
 node_modules
 firebase.json
 __pycache__
 myenv
 uploads
+python/.venv
+python/raw_captures_faces
