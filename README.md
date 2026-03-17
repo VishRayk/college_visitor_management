@@ -29,6 +29,13 @@ Copy the example and edit secrets:
 cp .env.example .env
 ```
 
+On Windows PowerShell, use:
+
+```powershell
+Copy-Item .env.example .env
+Copy-Item .\frontend\.env.example .\frontend\.env
+```
+
 Defaults assume the backend runs on **port 3000** and MySQL is on **3306**.
 
 ### 3) Start MySQL (auto-creates schema)
@@ -38,6 +45,8 @@ docker compose up -d
 ```
 
 This will create the DB + tables from `db/init.sql`.
+
+If you already have local MySQL running on port **3306**, stop it first (recommended), or change the host port mapping in `docker-compose.yml` (for example `3307:3306`) and set `SQL_PORT` accordingly in your `.env`.
 
 ### 4) Run the backend (Express)
 
@@ -55,7 +64,6 @@ In another terminal:
 
 ```bash
 cd frontend
-cp .env.example .env
 npm run dev
 ```
 
